@@ -8,15 +8,15 @@ const { createCheckout } = require("./helpers/checkouts");
 
 const { books, users, checkouts } = require("./seedData");
 
-//Drop Tables
+// Drop Tables
 const dropTables = async () => {
   try {
-    console.log("Starting to drop tables");
+    console.log("Starting to drop tables...");
     await client.query(`
-        DROP TABLE IF EXISTS books;
-        DROP TABLE IF EXISTS users;
-        DROP TABLE IF EXISTS checkouts;
-        `);
+          DROP TABLE IF EXISTS checkouts;
+          DROP TABLE IF EXISTS books;
+          DROP TABLE IF EXISTS users;
+      `);
     console.log("Tables dropped!");
   } catch (error) {
     console.log("Error dropping tables");
@@ -28,28 +28,29 @@ const dropTables = async () => {
 const createTables = async () => {
   console.log("Building tables...");
   await client.query(`
-        CREATE TABLE books (
-            "bookId" SERIAL PRIMARY KEY,
-            title varchar(255) UNIQUE NOT NULL,
-            author varchar(255) NOT NULL,
-            pub_year INT,
-            genre varchar(100) NOT NULL,
-            status ENUM('available', 'borrowed', 'unavailable')
-        );
-        CREATE TABLE checkouts (
+          CREATE TABLE users (
+              "userId" SERIAL PRIMARY KEY,
+              username varchar(50) NOT NULL,
+              email varchar(100) NOT NULL,
+              role varchar(20) NOT NULL
+          );
+          CREATE TABLE books (
+              "bookId" SERIAL PRIMARY KEY,
+              title varchar(255) UNIQUE NOT NULL,
+              author varchar(255) NOT NULL,
+              pub_year INT,
+              genre varchar(100) NOT NULL,
+              status varchar(20) NOT NULL
+          );
+          CREATE TABLE checkouts (
             "checkoutId" SERIAL PRIMARY KEY,
             checkout_date DATE,
             due_date DATE,
-            "bookId" INTEGER REFERENCES books(bookId) NOT NULL,
-            "userId" INTEGER REFERENCES users(userId)
+            "bookId" INTEGER REFERENCES books("bookId") NOT NULL,
+            "userId" INTEGER REFERENCES users("userId")
         );
-        CREATE TABLE users (
-            "userId" SERIAL PRIMARY KEY,
-            username varchar(50) NOT NULL,
-            email varchar(100) NOT NULL,
-            role ENUM('user', 'librarian')
-        );
-    `);
+        
+      `);
   console.log("Tables built!");
 };
 

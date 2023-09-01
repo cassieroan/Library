@@ -56,16 +56,16 @@ const users = [
 //Checkouts
 const checkouts = [
   {
-    checkout_date: 2023 - 8 - 31,
-    due_date: 2023 - 10 - 31,
-    bookID: 3,
-    userID: 1,
+    checkout_date: "2023-08-31",
+    due_date: "2023-10-31",
+    bookId: 3,
+    userId: 1,
   },
   {
-    checkout_date: 2023 - 8 - 15,
-    due_date: 2023 - 10 - 15,
-    bookID: 5,
-    userID: 2,
+    checkout_date: "2023-08-15",
+    due_date: "2023-10-15",
+    bookId: 5,
+    userId: 2,
   },
 ];
 
