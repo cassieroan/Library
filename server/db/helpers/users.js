@@ -18,4 +18,16 @@ const createUser = async ({ username, email, role }) => {
   }
 };
 
-module.exports = { createUser };
+const getAllUsers = async () => {
+  try {
+    const { rows } = await client.query(`
+            SELECT *
+            FROM users;
+        `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { createUser, getAllUsers };

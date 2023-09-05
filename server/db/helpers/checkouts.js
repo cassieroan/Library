@@ -18,4 +18,16 @@ const createCheckout = async ({ checkout_date, due_date, bookId, userId }) => {
   }
 };
 
-module.exports = { createCheckout };
+const getAllCheckouts = async () => {
+  try {
+    const { rows } = await client.query(`
+            SELECT *
+            FROM checkouts;
+        `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { createCheckout, getAllCheckouts };
