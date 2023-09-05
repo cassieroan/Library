@@ -30,4 +30,22 @@ const getAllCheckouts = async () => {
   }
 };
 
-module.exports = { createCheckout, getAllCheckouts };
+//Get checkout by ID
+const getCheckoutById = async (checkoutId) => {
+  try {
+    const {
+      rows: [checkouts],
+    } = await client.query(
+      `
+              SELECT *
+              FROM checkouts
+              WHERE "checkoutId" =${checkoutId};
+          `
+    );
+    return checkouts;
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { createCheckout, getAllCheckouts, getCheckoutById };
