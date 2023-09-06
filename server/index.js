@@ -4,6 +4,10 @@ const { apiRouter } = require("./api");
 const app = express();
 app.use(express.json());
 
+// init cors
+const cors = require("cors");
+app.use(cors());
+
 const port = 8080;
 
 app.get("/", (req, res) => {

@@ -1,6 +1,6 @@
 const client = require("../client");
 
-//Create
+//Create Book
 const createBook = async ({ title, author, pub_year, genre, status }) => {
   try {
     const {
