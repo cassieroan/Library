@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Book from './Book';
 
 function BookList({ allBooks }) {
   return (
-    <>
+    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       {allBooks ? (
-        allBooks.map(({ bookId, title }) => (
-          <Book key={bookId} book={{ bookId, title }} />
+        allBooks.map(({ bookId, title, img_url }) => (
+          <div key={bookId} className="book-card">
+            <img src={img_url} alt={title} className="book-image" />
+            <p>{title}</p>
+          </div>
         ))
       ) : (
         <p>No books available.</p>
       )}
-    </>
+    </div>
   );
 }
 
@@ -21,7 +23,7 @@ BookList.propTypes = {
     PropTypes.shape({
       bookId: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      // Add more prop types for other properties as needed
+      img_url: PropTypes.string.isRequired,
     })
   ),
 };

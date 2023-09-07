@@ -40,7 +40,9 @@ const createTables = async () => {
               author varchar(255) NOT NULL,
               pub_year INT,
               genre varchar(100) NOT NULL,
-              status varchar(20) NOT NULL
+              status varchar(20) NOT NULL,
+              img_url varchar(255),
+              description text
           );
           CREATE TABLE checkouts (
             "checkoutId" SERIAL PRIMARY KEY,
@@ -96,8 +98,6 @@ const createInitialCheckouts = async () => {
 //Call all my functions and 'BUILD' my database
 const rebuildDb = async () => {
   try {
-    //ACTUALLY connect to my local database
-    client.connect();
     //Run our functions
     await dropTables();
     await createTables();
@@ -111,7 +111,7 @@ const rebuildDb = async () => {
     console.error(error);
   } finally {
     //close our connection
-    client.end();
+    await client.end();
   }
 };
 

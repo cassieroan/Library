@@ -1,17 +1,25 @@
 const client = require("../client");
 
 //Create Book
-const createBook = async ({ title, author, pub_year, genre, status }) => {
+const createBook = async ({
+  title,
+  author,
+  pub_year,
+  genre,
+  status,
+  img_url,
+  description,
+}) => {
   try {
     const {
       rows: [books],
     } = await client.query(
       `
-                INSERT INTO books(title, author, pub_year, genre, status)
-                VALUES($1, $2, $3, $4, $5)
+                INSERT INTO books(title, author, pub_year, genre, status, img_url, description)
+                VALUES($1, $2, $3, $4, $5, $6, $7)
                 RETURNING *;
             `,
-      [title, author, pub_year, genre, status]
+      [title, author, pub_year, genre, status, img_url, description]
     );
     return books;
   } catch (error) {

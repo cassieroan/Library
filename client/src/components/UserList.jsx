@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import User from './User'; // Import your User component
+import User from './User';
 
-function UserList({ users }) {
+function UserList({ allUsers }) {
   return (
     <>
-      {users.length > 0 ? (
-        users.map(({ userId, username }) => (
+      {allUsers.length > 0 ? (
+        allUsers.map(({ userId, username }) => (
           <User key={userId} user={{ userId, username }} />
         ))
       ) : (
@@ -17,7 +17,7 @@ function UserList({ users }) {
 }
 
 UserList.propTypes = {
-  users: PropTypes.arrayOf(
+  allUsers: PropTypes.arrayOf(
     PropTypes.shape({
       userId: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired,
