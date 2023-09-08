@@ -14,22 +14,26 @@ function BookList() {
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {allBooks ? (
-        allBooks.map(({ bookId, title, status, img_url }) => (
-          <Link key={bookId} to={`/books/${bookId}`}  className="book-card">
-            <div key={bookId}>
-              <img src={img_url} alt={title} className="book-image" />
-              <p style={{
-                color: status === 'available' ? 'green' : 'red'
-              }}>{title}</p>
-            </div>
-          </Link>
-        ))
-      ) : (
-        <p>No books available.</p>
-      )}
+    <div>
+      <h1 style={{ textAlign: 'center' }}>All Books</h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {allBooks ? (
+          allBooks.map(({ bookId, title, status, img_url }) => (
+            <Link key={bookId} to={`/books/${bookId}`}  className="book-card">
+              <div key={bookId}>
+                <img src={img_url} alt={title} className="book-image" />
+                <p style={{
+                  color: status === 'available' ? 'green' : 'red'
+                }}>{title}</p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p>No books available.</p>
+        )}
+      </div>
     </div>
+    
   );
 }
 

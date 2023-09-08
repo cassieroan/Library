@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <nav>
       <div className="container">
-        <a href="/" className="logo">Library App</a>
+        <a href="/" className="logo">Cassie's Library</a>
         <ul>
           <li><Link to="/" className="nav-link">Home</Link></li>
           <li><Link to="/books" className="nav-link">Books</Link></li>
