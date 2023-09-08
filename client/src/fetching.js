@@ -8,6 +8,12 @@ export async function getAllBooks() {
   return json;
 }
 
+export async function getAllAvailableBooks() {
+  const resp = await fetch(`${api_root}/books/available`);
+  const json = await resp.json();
+  return json;
+}
+
 export async function getBookById(id) {
   const resp = await fetch(`${api_root}/books/${id}`);
   const json = await resp.json();

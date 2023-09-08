@@ -40,6 +40,20 @@ const getAllBooks = async () => {
   }
 };
 
+//Get all available books
+const getAllAvailableBooks = async () => {
+  try {
+    const { rows } = await client.query(`
+            SELECT *
+            FROM books
+            WHERE status = 'available'
+    `);
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 //Get book by ID
 const getBookById = async (bookId) => {
   try {
@@ -47,10 +61,11 @@ const getBookById = async (bookId) => {
       rows: [books],
     } = await client.query(
       `
-              SELECT *
-              FROM books
-              WHERE "bookId" =${bookId};
-          `
+          SELECT *
+          FROM books
+          WHERE "bookId" = $1;
+      `,
+      [bookId]
     );
     return books;
   } catch (error) {
@@ -73,4 +88,10 @@ const deleteBook = async (bookId) => {
   }
 };
 
-module.exports = { createBook, getAllBooks, getBookById, deleteBook };
+module.exports = {
+  createBook,
+  getAllBooks,
+  getBookById,
+  deleteBook,
+  getAllAvailableBooks,
+};

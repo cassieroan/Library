@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getBookById } from '../fetching';
 import { useParams } from 'react-router-dom';
 import '../App.css';
 
-function BookDetails({ allBooks }) {
+function BookDetails() {
   const { bookId } = useParams();
+
   const [book, setBook] = useState(null);
-
   useEffect(() => {
-    const foundBook = allBooks.find((b) => b.bookId === parseInt(bookId));
-
-    if (foundBook) {
-      setBook(foundBook);
+    async function fetchData() {
+      const books = await getBookById(bookId)
+      setBook(books);
     }
-  }, [bookId, allBooks]);
+    fetchData();
+  }, []);
 
   if (!book) {
     return <p>Loading...</p>;

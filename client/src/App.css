@@ -29,8 +29,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -96,7 +94,6 @@ nav {
   color: white;
   text-decoration: none;
   display: inline-block;
-  height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;

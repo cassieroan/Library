@@ -1,15 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { getAllBooks } from '../fetching';
+import { Link } from 'react-router-dom'; // Import Link
 
-function BookList({ allBooks }) {
+
+function BookList() {
+  const [allBooks, setAllBooks] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const books = await getAllBooks();
+      setAllBooks(books);
+    }
+    fetchData();
+  }, []);
+
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       {allBooks ? (
-        allBooks.map(({ bookId, title, img_url }) => (
-          <div key={bookId} className="book-card">
-            <img src={img_url} alt={title} className="book-image" />
-            <p>{title}</p>
-          </div>
+        allBooks.map(({ bookId, title, status, img_url }) => (
+          <Link key={bookId} to={`/books/${bookId}`}  className="book-card">
+            <div key={bookId}>
+              <img src={img_url} alt={title} className="book-image" />
+              <p style={{
+                color: status === 'available' ? 'green' : 'red'
+              }}>{title}</p>
+            </div>
+          </Link>
         ))
       ) : (
         <p>No books available.</p>
@@ -19,13 +34,6 @@ function BookList({ allBooks }) {
 }
 
 BookList.propTypes = {
-  allBooks: PropTypes.arrayOf(
-    PropTypes.shape({
-      bookId: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      img_url: PropTypes.string.isRequired,
-    })
-  ),
 };
 
 export default BookList;

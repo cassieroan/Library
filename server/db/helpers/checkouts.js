@@ -39,8 +39,9 @@ const getCheckoutById = async (checkoutId) => {
       `
               SELECT *
               FROM checkouts
-              WHERE "checkoutId" =${checkoutId};
-          `
+              WHERE "checkoutId" = $1
+      `,
+      [checkoutId]
     );
     return checkouts;
   } catch (error) {

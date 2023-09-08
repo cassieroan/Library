@@ -4,6 +4,7 @@ const {
   getBookById,
   createBook,
   deleteBook,
+  getAllAvailableBooks,
 } = require("../db/helpers/books");
 const {
   getAllUsers,
@@ -27,6 +28,12 @@ apiRouter.get("/foo", (req, res) => {
 //All Books
 apiRouter.get("/books", async (req, res) => {
   const books = await getAllBooks();
+  res.json(books);
+});
+
+//All available books
+apiRouter.get("/books/available", async (req, res) => {
+  const books = await getAllAvailableBooks();
   res.json(books);
 });
 
@@ -80,7 +87,6 @@ apiRouter.get("/users/:id", async (req, res, next) => {
 //Create User
 apiRouter.post("/users", async (req, res, next) => {
   try {
-    console.log("req", req.body);
     const user = await createUser(req.body);
     res.send(user);
   } catch (err) {

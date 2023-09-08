@@ -1,7 +1,6 @@
 const client = require("../client");
 
 const createUser = async (body) => {
-  console.log(body);
   try {
     const {
       rows: [users],
@@ -38,10 +37,11 @@ const getUserById = async (userId) => {
       rows: [users],
     } = await client.query(
       `
-              SELECT *
-              FROM users
-              WHERE "userId" =${userId};
-          `
+          SELECT *
+          FROM users
+          WHERE "userId" = $1
+      `,
+      [userId]
     );
     return users;
   } catch (error) {
