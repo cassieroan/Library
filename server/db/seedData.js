@@ -40,9 +40,9 @@ const books = [
     genre: "Classics",
     status: "available",
     img_url:
-      "The Catcher in the Rye, novel by J.D. Salinger published in 1951. The novel details two days in the life of 16-year-old Holden Caulfield after he has been expelled from prep school. Confused and disillusioned, Holden searches for truth and rails against the “phoniness” of the adult world.",
-    description:
       "https://cdn.britannica.com/94/181394-050-2F76F7EE/Reproduction-cover-edition-The-Catcher-in-the.jpg",
+    description:
+      "The Catcher in the Rye, novel by J.D. Salinger published in 1951. The novel details two days in the life of 16-year-old Holden Caulfield after he has been expelled from prep school. Confused and disillusioned, Holden searches for truth and rails against the “phoniness” of the adult world.",
   },
   {
     title: "Tomorrow and Tomorrow and Tomorrow",
@@ -70,9 +70,30 @@ const books = [
 
 //Users
 const users = [
-  { username: "glitterqueen", email: "glitterqueen@gmail.com", role: "user" },
-  { username: "guywholikestoread", email: "johngreen@gmail.com", role: "user" },
-  { username: "croan", email: "cassandracroan@gmail.com", role: "librarian" },
+  {
+    username: "glitterqueen",
+    email: "glitterqueen@gmail.com",
+    role: "user",
+    // password: "glitterqueen123"
+    password_hash:
+      "$2b$10$6dHkWoGxHoHOEe8exDNjO.bXTWDsqcQGU1zCWb2IjbxUSGw.h6l4.",
+  },
+  {
+    username: "guywholikestoread",
+    email: "johngreen@gmail.com",
+    role: "user",
+    // password: "infinitejest"
+    password_hash:
+      "$2b$10$BMhXZc0k.o/wjZZh8A3TTOiefviwydSjwQmAui7g9Wnlt3A2opekO",
+  },
+  {
+    username: "croan",
+    email: "cassandracroan@gmail.com",
+    role: "librarian",
+    // password: "imcute1234"
+    password_hash:
+      "$2b$10$VSXMzwZ2bwWZBmiMCWK6BuFtzd3S1gopHG9NIrf8hQ2hPzGhC8Byq",
+  },
 ];
 
 //Checkouts

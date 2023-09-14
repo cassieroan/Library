@@ -53,7 +53,7 @@ export async function getUserById(id) {
 }
 
 export async function createUser(user) {
-  const resp = await fetch(`${api_root}/users`, {
+  const resp = await fetch(`${api_root}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

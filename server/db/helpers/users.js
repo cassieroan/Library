@@ -6,11 +6,11 @@ const createUser = async (body) => {
       rows: [users],
     } = await client.query(
       `
-                INSERT INTO users(username, email, role)
-                VALUES($1, $2, $3)
+                INSERT INTO users(username, email, role, password_hash)
+                VALUES($1, $2, $3, $4)
                 RETURNING *;
             `,
-      [body.username, body.email, body.role]
+      [body.username, body.email, body.role, body.password_hash]
     );
     return users;
   } catch (error) {

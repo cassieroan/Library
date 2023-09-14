@@ -30,18 +30,19 @@ const createTables = async () => {
   await client.query(`
           CREATE TABLE users (
               "userId" SERIAL PRIMARY KEY,
-              username varchar(50) NOT NULL,
-              email varchar(100) NOT NULL,
-              role varchar(20) NOT NULL
+              username text NOT NULL,
+              email text NOT NULL,
+              role text NOT NULL,
+              password_hash text NOT NULL
           );
           CREATE TABLE books (
               "bookId" SERIAL PRIMARY KEY,
-              title varchar(255) UNIQUE NOT NULL,
-              author varchar(255) NOT NULL,
+              title text UNIQUE NOT NULL,
+              author text NOT NULL,
               pub_year INT,
-              genre varchar(100) NOT NULL,
-              status varchar(20) NOT NULL,
-              img_url varchar(255),
+              genre text NOT NULL,
+              status text NOT NULL,
+              img_url text,
               description text
           );
           CREATE TABLE checkouts (

@@ -84,15 +84,7 @@ apiRouter.get("/users/:id", async (req, res, next) => {
   }
 });
 
-//Create User
-apiRouter.post("/users", async (req, res, next) => {
-  try {
-    const user = await createUser(req.body);
-    res.send(user);
-  } catch (err) {
-    next(err);
-  }
-});
+// for Create User, see /api/auth/register
 
 // Delete User
 apiRouter.delete("/users/:id", async (req, res, next) => {
@@ -130,5 +122,11 @@ apiRouter.post("/checkouts", async (req, res, next) => {
     next(err);
   }
 });
+
+apiRouter.get("/health", (req, res, next) => {
+  res.send("All healthy and ready to go!");
+});
+
+apiRouter.use("/auth", require("./auth"));
 
 module.exports = { apiRouter };

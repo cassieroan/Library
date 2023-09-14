@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { createUser } from "../fetching";
 
-export default function NewUser() {
+export default function LogIn() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
-  const [password, setPassword] = useState('');
 
   // formSubmitState is one of { status: 'unsubmitted' }, { status: 'sending' }, or
   // { status: 'completed', userId: number } 
@@ -15,7 +14,7 @@ export default function NewUser() {
     evt.preventDefault();
 
     setFormSubmitState({ status: 'sending' });
-    const result = await createUser({username, email, role, password});
+    const result = await createUser({username, email, role});
     // at this point, result is { userId: number, username: string, email: string, role: string}
     setFormSubmitState({ status: 'completed', userId: result.userId })
   };
@@ -32,7 +31,7 @@ export default function NewUser() {
 
   return (
     <div>
-      <h1 style={{textAlign: 'center'}}>Add new user</h1>
+      <h1 style={{textAlign: 'center'}}>Log In</h1>
       <form onSubmit={handleSubmit} style={{
         margin: 'auto',
         maxWidth: 300
@@ -50,41 +49,6 @@ export default function NewUser() {
             </div>
           </div>
           
-          <div>
-            <div>
-              <label htmlFor="email">Email</label>
-            </div>
-            <div>
-              <input
-                type="email" id="email"
-                value={email} onChange={evt => setEmail(evt.target.value)}
-              />
-          </div>
-          </div>
-
-          <div>
-            <div>
-              <label htmlFor="role">Role</label>
-            </div>
-            <div>
-              <select id="role" value={role} onChange={evt => setRole(evt.target.value)}>
-                <option value="user">User</option>
-                <option value="librarian">Librarian</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <div>
-              <label htmlFor="password">Password</label>
-            </div>
-            <div>
-              <input
-                type="password" id="password"
-                value={password} onChange={evt => setPassword(evt.target.value)}
-              />
-            </div>
-          </div>
           
           <input type="submit" value="Submit" />
         </fieldset>
