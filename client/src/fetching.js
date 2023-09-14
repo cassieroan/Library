@@ -64,6 +64,18 @@ export async function createUser(user) {
   return json;
 }
 
+export async function logInUser(user) {
+  const resp = await fetch(`${api_root}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+  const json = await resp.json();
+  return json;
+}
+
 export async function deleteUser(id) {
   const resp = await fetch(`${api_root}/users/${id}`, { method: "DELETE" });
   const json = await resp.json();

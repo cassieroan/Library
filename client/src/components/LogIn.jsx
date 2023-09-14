@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { createUser } from "../fetching";
+import { logInUser } from "../fetching";
 
 export default function LogIn() {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState('');
+  const [password, setPassword] = useState('');
 
   // formSubmitState is one of { status: 'unsubmitted' }, { status: 'sending' }, or
   // { status: 'completed', userId: number } 
@@ -14,17 +13,15 @@ export default function LogIn() {
     evt.preventDefault();
 
     setFormSubmitState({ status: 'sending' });
-    const result = await createUser({username, email, role});
+    await logInUser({ username, password });
     // at this point, result is { userId: number, username: string, email: string, role: string}
-    setFormSubmitState({ status: 'completed', userId: result.userId })
+    setFormSubmitState({ status: 'completed' })
   };
 
   if (formSubmitState.status === 'completed') {
     return (
       <center>
-        <h1>Thanks for joining!</h1>
-        <h3>Your ID # is</h3>
-        <h2 style={{ color: 'red' }}>{formSubmitState.userId}</h2>
+        <h1>Log In Successful</h1>
       </center>
     )
   }
@@ -49,6 +46,17 @@ export default function LogIn() {
             </div>
           </div>
           
+          <div>
+            <div>
+              <label htmlFor="password">Password</label>
+            </div>
+            <div>
+              <input
+                type="password" id="password"
+                value={password} onChange={evt => setPassword(evt.target.value)}
+              />
+            </div>
+          </div>
           
           <input type="submit" value="Submit" />
         </fieldset>

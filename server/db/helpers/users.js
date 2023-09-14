@@ -39,9 +39,28 @@ const getUserById = async (userId) => {
       `
           SELECT *
           FROM users
-          WHERE "userId" = $1
+          WHERE userId = $1
       `,
       [userId]
+    );
+    return users;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//Get user by username
+const getUserByUsername = async (username) => {
+  try {
+    const {
+      rows: [users],
+    } = await client.query(
+      `
+          SELECT *
+          FROM users
+          WHERE username = $1
+      `,
+      [username]
     );
     return users;
   } catch (error) {
@@ -64,4 +83,10 @@ const deleteUser = async (userId) => {
   }
 };
 
-module.exports = { createUser, getAllUsers, getUserById, deleteUser };
+module.exports = {
+  createUser,
+  getAllUsers,
+  getUserById,
+  deleteUser,
+  getUserByUsername,
+};
