@@ -9,7 +9,6 @@ export default function Navbar() {
           <li><Link to="/" className="nav-link">Home</Link></li>
           <li><Link to="/books" className="nav-link">Books</Link></li>
           <li><Link to="/users" className="nav-link">Users</Link></li>
-          <li><Link to="/users/new" className="nav-link">Add User</Link></li>
           <li><Link to="/users/login" className="nav-link">Log In</Link></li>
         </ul>
       </div>

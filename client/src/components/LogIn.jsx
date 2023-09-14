@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { logInUser } from "../fetching";
+import { Link } from "react-router-dom";
+
 
 export default function LogIn() {
   const [username, setUsername] = useState('');
@@ -61,6 +63,7 @@ export default function LogIn() {
           <input type="submit" value="Submit" />
         </fieldset>
       </form>
+      <h4  style={{textAlign: 'center'}}><a href="/users/new" >Don't have an account? Create one here.</a></h4>
     </div>
   )
 }
